@@ -1,0 +1,25 @@
+service: sharyn-serverless
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: prod
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpack:
+    config: webpack.config.js
+
+functions:
+  hello:
+    handler: src/hello.main
+    events:
+      - http:
+          path: /
+          method: any
